@@ -16,11 +16,25 @@
 
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 
 using namespace std;
 
+vector<vector<int>> threeSumHelper(vector<int>& nums, unordered_map<int,int> hmp){
+    return {{}};
+}
+
 vector<vector<int>> threeSum(vector<int>& nums) {
-    
+    // we want to try all combinations of the numbers such that all three number indices are unique and they add up to 0.
+
+    // store numbers in a hashmap
+    unordered_map<int,int> hmp;
+
+    for (int i=0;i<nums.size();i++){
+        hmp[i] = nums.at(i);
+    }
+
+    return threeSumHelper(nums,hmp);
 }
 
 int main(){
