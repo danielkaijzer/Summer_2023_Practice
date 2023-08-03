@@ -21,11 +21,32 @@
 using namespace std;
 
 vector<vector<int>> threeSumHelper(vector<int>& nums, unordered_map<int,int> hmp){
-    return {{}};
+
+    vector<vector<int>> output = {{}};
+
+    for (int i = 0; i <nums.size(); i++){
+        for (int j = i + 1; j <nums.size(); j++){
+            int current_2sum = nums[i] + nums[j];
+            int complement = 0 - current_2sum;
+
+            if (hmp.find(complement) != hmp.end()){
+                // if triplet exists, add it to output 2D vector of ints
+                output.push_back({nums[i],nums[j],complement});
+            }
+        }
+    }
+
+    return output;
 }
 
 vector<vector<int>> threeSum(vector<int>& nums) {
     // we want to try all combinations of the numbers such that all three number indices are unique and they add up to 0.
+    if (nums.size() ==3){
+        if (nums.at(0) + nums.at(1) + nums.at(2) == 0){
+            return {{nums.at(0), nums.at(1), nums.at(2)}};
+        }
+        return {{}};
+    }
 
     // store numbers in a hashmap
     unordered_map<int,int> hmp;
@@ -39,7 +60,15 @@ vector<vector<int>> threeSum(vector<int>& nums) {
 
 int main(){
     vector<int> input = {-1,0,1,2,-1,-4};
+    // vector<int> input = {0,0,1};
 
+    vector<vector<int>> output = threeSum(input);
 
+    for (auto itr = output.begin(); itr != output.end(); itr++){
+        for (int i = 0; i< itr->size(); i++){
+            cout << itr->at(i) << " ";
+        }
+        cout << endl;
+    }
 
 }
