@@ -20,9 +20,11 @@ string licenseKeyFormatting(string s, int k) {
     int i = 0;
 
     for (char c: s){
-        
+
 
         cout << c << endl;
+
+        // comment
     }
 
 
