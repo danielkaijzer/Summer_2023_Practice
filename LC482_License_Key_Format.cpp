@@ -24,7 +24,7 @@ string licenseKeyFormatting(string s, int k) {
 
         cout << c << endl;
 
-        // comment
+        // commenta
     }
 
 
