@@ -15,10 +15,21 @@
 using namespace std;
 
 string licenseKeyFormatting(string s, int k) {
-    // if (s.length() <k){
-    //     return s;
-    // }
-    
+    string output;
+
+    int i = 0;
+
+    for (char c: s){
+        
+
+        cout << c << endl;
+    }
+
+
+    // first remove all dashes
+
+    // add dashes for every 
+    return output;
 }
 
 int main(){
