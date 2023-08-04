@@ -30,6 +30,8 @@ string licenseKeyFormatting(string s, int k) {
 
     // first remove all dashes
 
+    cout << "Sup";
+
     // add dashes for every 
     return output;
 }
