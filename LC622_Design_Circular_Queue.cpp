@@ -2,7 +2,7 @@
  * @file LC622_Design_Circular_Queue.cpp
  * @author Daniel Kaijzer
  * @brief 
- * @version 0.2
+ * @version 1
  * @date 2023-08-06
  * 
  * @copyright Copyright (c) 2023
@@ -24,10 +24,10 @@ private:
 
 public:
     // Constructor
-    MyCircularQueue(int capacity) {
-        capacity_ = capacity;
+    MyCircularQueue(int k) {
+        this->capacity_ = k;
         data_ = new int[capacity_];
-        front_ = -1; // see deQueue for reasoning behind this start value
+        front_ = 0; // see deQueue for reasoning behind this start value
         rear_ = -1;  // see enQueue for reasoning behind this start value
         item_count_ = 0;
     }
@@ -41,6 +41,7 @@ public:
         if (isFull()){
             return false;
         }
+
         rear_ = (rear_+1)%capacity_;
         data_[rear_] = value;
         item_count_++;
@@ -51,16 +52,30 @@ public:
         if (isEmpty()){
             return false;
         }
+
+        data_[front_] = -1;
+
+        // if (front_ == rear_){
+        //     front_ = -1;
+        //     rear_ = -1;
+        // }
+
         front_ = (front_+1) %capacity_;
         item_count_--;
         return true;
     }
     
     int Front() {
+        if(isEmpty()) {
+            return -1;
+        }
         return data_[front_];
     }
     
     int Rear() {
+        if(isEmpty()) {
+            return -1;
+        }
         return data_[rear_];
     }
     
@@ -69,22 +84,22 @@ public:
     }
     
     bool isFull() {
-        return (!isEmpty());
+        return (item_count_ == capacity_);
     }
 };
 
 int main(){
 
-    MyCircularQueue myCircularQueue = new MyCircularQueue(3);
-    cout << myCircularQueue.enQueue(1); // return True
-    cout << myCircularQueue.enQueue(2); // return True
-    cout << myCircularQueue.enQueue(3); // return True
-    cout << myCircularQueue.enQueue(4); // return False
-    cout << myCircularQueue.Rear();     // return 3
-    cout << myCircularQueue.isFull();   // return True
-    cout << myCircularQueue.deQueue();  // return True
-    cout << myCircularQueue.enQueue(4); // return True
-    cout << myCircularQueue.Rear();     // return 4
+    MyCircularQueue myCircularQueue = MyCircularQueue(3);
+    cout << myCircularQueue.enQueue(1) << " "; // return True
+    cout << myCircularQueue.enQueue(2) << " "; // return True
+    cout << myCircularQueue.enQueue(3) << " "; // return True
+    cout << myCircularQueue.enQueue(4) << " "; // return False
+    cout << myCircularQueue.Rear() << " ";     // return 3
+    cout << myCircularQueue.isFull() << " ";   // return True
+    cout << myCircularQueue.deQueue() << " ";  // return True
+    cout << myCircularQueue.enQueue(4) << " "; // return True
+    cout << myCircularQueue.Rear() << endl;     // return 4
 }
 
 /**
