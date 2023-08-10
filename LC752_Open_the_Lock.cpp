@@ -2,8 +2,8 @@
  * @file LC752_Open_the_Lock.cpp
  * @author Daniel Kaijzer
  * @brief 
- * @version 0.3
- * @date 2023-08-09
+ * @version 0.4
+ * @date 2023-08-10
  * 
  * @copyright Copyright (c) 2023
  * 
@@ -38,50 +38,66 @@ int openLock(vector<string>& deadends, string target) {
 
 
     // BFS
-
     while (!q.empty()){
 
         main = cur = prev = q.front(); 
-        q.pop();
+        // q.pop();
+
+        // number of steps
 
         for (int i =0; i<4;i++){
-            if (cur[i] == '9'){
-                cur[i] += -9;
-            }
-            else{
-                cur[i] += 1;
-            }
-            if (cur == target) return level;
-            if (!visited.count(cur)){
-                q.push(cur);
-                visited.insert(cur);
+
+            // find minimum steps needed at current index
+            // determine if you need to step up or down
+
+            // CODE FROM HERE
+
+            // if target is 2 and cur is 1, it'll be faster to go up 1 than 9 down
+            int cur_steps_up = (target[i] - cur[i]) %10; 
+            int cur_steps_down = (target[i] + cur[i]) %10;
+
+
+            int min_steps_need_at_index = min(, 1);
+
+            for (int j = 0; j< steps_need_at_index; j++){
+
             }
 
 
-            if (prev[i] == '0'){
-                prev[i] -= -9;
-            }
-            else{
-                prev[i] -= 1;
-            }
-            if (prev == target) return level;
-            if (!visited.count(prev)){
-                q.push(prev);
-                visited.insert(prev);
-            }
 
-            cur = prev = main;
+
+            // if (cur[i] == '9'){
+            //     cur[i] += 1%10;
+            // }
+            // else{
+            //     cur[i] += 1;
+            // }
+            // if (cur == target) return level;
+            // if (!visited.count(cur)){
+            //     q.push(cur);
+            //     visited.insert(cur);
+            // }
+
+
+            // if (prev[i] == '0'){
+            //     prev[i] -= -9;
+            // }
+            // else{
+            //     prev[i] -= 1;
+            // }
+            // if (prev == target) return level;
+            // if (!visited.count(prev)){
+            //     q.push(prev);
+            //     visited.insert(prev);
+            // }
+
+            // cur = prev = main;
         }
     
         size--;
         level++;
     }
-
-
-
-
-    return -1; // if target not found
-    
+    return -1; // if target not found 
 }
 
 int main(){
