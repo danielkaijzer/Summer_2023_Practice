@@ -2,7 +2,7 @@
  * @file 155_Min_Stack.cpp
  * @author Daniel Kaijzer
  * @brief 
- * @version 0.1
+ * @version 0.2
  * @date 2023-08-11
  * 
  * @copyright Copyright (c) 2023
@@ -19,23 +19,30 @@ class MinStack {
 private:
     vector<int> data;
     int top_;
-    int capacity_;
-    int item_count_;
+    int min_;
+    int prev_min_;
 
 public:
 
     // initialize stack object
     MinStack() {
-
-        
     }
     
     void push(int val) {
+        data.push_back(val);
+        top_ = data[data.size()-1];
+        prev_min_ = min_;
+        min_ = min(top_,min_);
         
     }
     
     void pop() {
-        
+        if (min_ == top_){
+            min_ = prev_min_;
+        }
+        data.pop_back();
+        top_ = data[data.size()-1];
+
     }
     
     int top() {
@@ -43,7 +50,7 @@ public:
     }
     
     int getMin() {
-        return -1;
+        return min_;
     }
 };
 
