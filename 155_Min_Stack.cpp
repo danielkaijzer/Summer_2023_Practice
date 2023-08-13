@@ -29,6 +29,9 @@ public:
     }
     
     void push(int val) {
+        if (data.empty()){
+            data.push_back(val);
+        }
         data.push_back(val);
         top_ = data[data.size()-1];
         prev_min_ = min_;
@@ -37,16 +40,21 @@ public:
     }
     
     void pop() {
-        if (min_ == top_){
-            min_ = prev_min_;
+
+        if (!data.empty()){
+            if (min_ == top_){
+                min_ = prev_min_;
+            }
+            data.pop_back();
+            top_ = data[data.size()-1];
         }
-        data.pop_back();
-        top_ = data[data.size()-1];
 
     }
     
     int top() {
-        return top_;
+        if (!data.empty()){
+            return top_;
+        }
     }
     
     int getMin() {
