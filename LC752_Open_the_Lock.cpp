@@ -59,7 +59,7 @@ int openLock(vector<string>& deadends, string target) {
 
             int min_steps_need_at_index = min(, 1);
 
-            for (int j = 0; j< steps_need_at_index; j++){
+            for (int j = 0; j< min_steps_need_at_index; j++){
 
             }
 

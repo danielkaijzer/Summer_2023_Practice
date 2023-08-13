@@ -55,6 +55,7 @@ public:
         if (!data.empty()){
             return top_;
         }
+        return -1;
     }
     
     int getMin() {

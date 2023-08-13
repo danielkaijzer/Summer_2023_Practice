@@ -12,7 +12,7 @@
  * You may assume all four edges of the grid are all 
  * surrounded by water.
  * 
- * @version 0.1
+ * @version 0.2
  * @date 2023-08-07
  * 
  * @copyright Copyright (c) 2023
@@ -27,18 +27,12 @@ using namespace std;
 // helper function to perform dfs
 void dfs(vector<vector<char>>& grid, int i, int j){
     // check if we are out of bounds or if we have reached a 0
-    if(i < 0 || i >= grid.size() || j < 0 || j >= grid[0].size() || grid[i][j] != '1'){
-        return;
-    }
 
-    // set the current cell to 0
+    // mark each cell as visited (turn it into a '0') to avoid visiting them twice
     grid[i][j] = '0';
 
+
     // call dfs on the 4 adjacent cells
-    dfs(grid, i+1, j);
-    dfs(grid, i-1, j);
-    dfs(grid, i, j+1);
-    dfs(grid, i, j-1);
 
 }
 
