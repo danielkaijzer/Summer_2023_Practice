@@ -1,9 +1,12 @@
 /**
  * @file 155_Min_Stack.cpp
  * @author Daniel Kaijzer
- * @brief 
- * @version 0.2
- * @date 2023-08-11
+ * @brief Use pairs to store top value in first field 
+ * and current minimum value 
+ * within stack in second field (at the top of stack)
+ * 
+ * @version 1
+ * @date 2023-08-13
  * 
  * @copyright Copyright (c) 2023
  * 
@@ -17,10 +20,9 @@ using namespace std;
 class MinStack {
 
 private:
-    vector<int> data;
+    vector<pair<int,int>> data;
     int top_;
     int min_;
-    int prev_min_;
 
 public:
 
@@ -29,39 +31,43 @@ public:
     }
     
     void push(int val) {
+        pair<int,int> cur;
+
         if (data.empty()){
-            data.push_back(val);
+            cur.first = val;
+            cur.second = val;
+            data.push_back(cur);
         }
-        data.push_back(val);
-        top_ = data[data.size()-1];
-        prev_min_ = min_;
-        min_ = min(top_,min_);
-        
+        else{
+            cur.first = val;
+            cur.second = min(val,data.back().second); 
+            data.push_back(cur);
+        }
     }
     
     void pop() {
-
-        if (!data.empty()){
-            if (min_ == top_){
-                min_ = prev_min_;
-            }
-            data.pop_back();
-            top_ = data[data.size()-1];
-        }
-
+        data.pop_back();
     }
     
     int top() {
-        if (!data.empty()){
-            return top_;
-        }
-        return -1;
+        return data.back().first; // returns value at top of stack
     }
     
     int getMin() {
-        return min_;
+        return data.back().second; // returns min value within stack
     }
 };
+
+int main(){
+    MinStack* minStack = new MinStack();
+    minStack->push(-2);
+    minStack->push(0);
+    minStack->push(-3);
+    cout << minStack->getMin() << endl; // return -3
+    minStack->pop();
+    cout <<minStack->top()<< endl;    // return 0
+    cout <<minStack->getMin()<< endl; // return -2
+}
 
 /**
  * Your MinStack object will be instantiated and called as such:
