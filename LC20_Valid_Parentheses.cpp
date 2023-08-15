@@ -2,7 +2,7 @@
  * @file LC20_Valid_Parentheses.cpp
  * @author Daniel Kaijzer
  * @brief 
- * @version 0.1
+ * @version 0.2
  * @date 2023-08-14
  * 
  * @copyright Copyright (c) 2023
@@ -17,23 +17,29 @@ using namespace std;
 bool isValid(string s) {
     stack<char> st;
 
-    for (int i =0; i < s.size()/2 -1; i++){
-        // st.push(s[i]);
-        cout << s[i] << endl;
-    }
+    int index = 0;
 
-    for (int i = s.size()/2-1; i < s.size()-1;i++){
-        // if (st.top() == '(' && s[i] == ')'){
-        //     st.pop();
-        // }
-        // else if (st.top() == '{' && s[i] == '}'){
-        //     st.pop();
-        // }
-        // else if (st.top() == '[' && s[i] == ']'){
-        //     st.pop();
-        // }
+    for (char c : s){
+        if (index < s.size()/2){
+            cout << "A" << c << endl;
+            st.push(c);
+        }
 
-        cout << s[i] << endl;
+        else if (!st.empty()){
+            if (st.top() == '(' && c == ')'){
+                st.pop();
+                cout << "B" << c << endl;
+            }
+            else if (st.top() == '{' && c == '}'){
+                st.pop();
+                cout << "C" << c << endl;
+            }
+            else if (st.top() == '[' && c == ']'){
+                st.pop();
+                cout << "D" <<c << endl;
+            }  
+        }
+        index++;
     }
 
     if (st.empty()){
@@ -45,7 +51,9 @@ bool isValid(string s) {
 
 
 int main(){
-    string s = "()";
+    string s1 = "()";
+    string s2 = "()[]{}";
 
-    isValid(s);
+    // cout << isValid(s1) << endl;
+    cout << isValid(s2) << endl;
 }
