@@ -2,7 +2,7 @@
  * @file LC20_Valid_Parentheses.cpp
  * @author Daniel Kaijzer
  * @brief 
- * @version 1.1
+ * @version 1.3
  * @date 2023-08-14
  * 
  * @copyright Copyright (c) 2023
@@ -21,42 +21,30 @@ bool isValid(string s) {
         if (c == '(' || c == '{' || c == '['){
             st.push(c);
         }
-        else if (c == ')' || c == '}' || c == ']'){
-            if(st.empty()){
+        else{
+            if (st.empty() ||
+                (st.top() == '(' && c != ')') || 
+                (st.top() == '{' && c != '}') ||
+                (st.top() == '[' && c != ']'))
+            {
                 return false;
             }
-            else if (st.top() == '(' && c == ')'){
-                st.pop();
-            }
-            else if (st.top() == '{' && c == '}'){
-                st.pop();
-            }
-            else if (st.top() == '[' && c == ']'){
-                st.pop();
-            }  
-            else{
-                return false;
-            }
+            st.pop();
         }
     }
-
     // if stack is empty, then paranteses are valid
-    if (st.empty()){
-        return true;
-    }
-    // else return false
-    return false;
+    return st.empty();
 }
 
 
 int main(){
-    string s1 = "()";
-    string s2 = "()[]{}";
-    string s3 = "]";
-    string s4 = "(])";
-    
+    string s1 = "()"; // true
+    string s2 = "()[]{}"; // true
+    string s3 = "]"; // false
+    string s4 = "(])"; // false
 
-    cout << isValid(s1) << endl << endl;
-    cout << isValid(s2) << endl << endl;
+    cout << isValid(s1) << endl;
+    cout << isValid(s2) << endl;
     cout << isValid(s3) << endl;
+    cout << isValid(s4) << endl;
 }
