@@ -2,7 +2,7 @@
  * @file LC20_Valid_Parentheses.cpp
  * @author Daniel Kaijzer
  * @brief 
- * @version 0.4
+ * @version 1
  * @date 2023-08-14
  * 
  * @copyright Copyright (c) 2023
