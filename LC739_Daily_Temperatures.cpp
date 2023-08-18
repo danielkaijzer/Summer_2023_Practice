@@ -1,8 +1,15 @@
 /**
  * @file LC739_Daily_Temperatures.cpp
  * @author Daniel Kaijzer
- * @brief 
- * @version 0.3
+ * @brief Use stack to track indices
+ * 
+ * Every time there is a temp increase we update the stack value
+ * 
+ * We then update the days value at that index where we encounter increase
+ * And update the value to the num of days, which is 
+ * the difference between the current index and index val at top of stack
+ * 
+ * @version 1
  * @date 2023-08-16
  * 
  * @copyright Copyright (c) 2023
@@ -11,27 +18,30 @@
 
 #include <iostream>
 #include <stack>
-#include <unordered_map>
 #include <vector>
 
 using namespace std;
 
 vector<int> dailyTemperatures(vector<int>& temperatures) {
-    vector<int> output;
+    stack<int> s;
+    s.push(0); // index of first temp
+    vector<int> output(temperatures.size(),0); // init all vals to 0
 
-    // add all elements to hashmap
-    for (int i = 0; i < temperatures.size(); i++){
-        // find num of days until higher temp
-        int j = i;
-        while (temperatures[i] >= temperatures[j] && j < temperatures.size()-1){
-            j++;
-        }
-        if (temperatures[j] > temperatures[i]){
-            int num_days = j-i;
-            output.push_back(num_days);
-        }
-        else{
-            output.push_back(0);
+    for (int i = 1; i < temperatures.size(); i++){
+        while (!s.empty()){
+            bool flag = false;
+
+            // if temp at i is warmer than temp at top of stack
+            if (temperatures[s.top()] < temperatures[i]){
+                output[s.top()] = i-(s.top());
+                s.pop();
+                flag = true;
+            }
+            
+            if (!flag || s.size() == 0){
+                s.push(i);
+                break;
+            }
         }
     }
 
