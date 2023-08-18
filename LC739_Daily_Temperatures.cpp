@@ -9,7 +9,7 @@
  * And update the value to the num of days, which is 
  * the difference between the current index and index val at top of stack
  * 
- * @version 1
+ * @version 1.1
  * @date 2023-08-16
  * 
  * @copyright Copyright (c) 2023
@@ -28,6 +28,7 @@ vector<int> dailyTemperatures(vector<int>& temperatures) {
     vector<int> output(temperatures.size(),0); // init all vals to 0
 
     for (int i = 1; i < temperatures.size(); i++){
+
         while (!s.empty()){
             bool flag = false;
 
@@ -35,12 +36,14 @@ vector<int> dailyTemperatures(vector<int>& temperatures) {
             if (temperatures[s.top()] < temperatures[i]){
                 output[s.top()] = i-(s.top());
                 s.pop();
-                flag = true;
+                flag = true; // indicates we've encountered warmer temp
             }
             
+            // if we have not yet encountered warmer temp,
+            // then add current index at top of stack
             if (!flag || s.size() == 0){
                 s.push(i);
-                break;
+                break; // breaks out of while loop
             }
         }
     }
