@@ -2,7 +2,7 @@
  * @file LC344_Reverse_String.cpp
  * @author Daniel Kaijzer
  * @brief 
- * @version 0.1
+ * @version 1
  * @date 2023-09-05
  * 
  * @copyright Copyright (c) 2023
@@ -18,24 +18,16 @@ using namespace std;
 
 void reverseString(vector<char>& s) {
 
-    stack<char> stk;
-
-    // add chars to stack
-    for (auto c : s){
-        stk.push(c);
-    }
-
-    for (auto c : s){
-        c = stk.top();
-        stk.pop();
+    for (int i = 0; i < (s.size()/2); ++i){
+        swap(s[i],s[s.size()-1-i]);
     }
 }
 
 int main(){
 
-    vector<char> s1 = {'h','e', 'l', 'l', 'o'};
+    vector<char> s1 = {'h','e', 'l', 'l', 'o', 'q'};
 
-    // reverseString(s1);
+    reverseString(s1);
 
     for (auto c : s1){
         cout << c;
