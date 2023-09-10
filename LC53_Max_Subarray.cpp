@@ -1,8 +1,8 @@
 /**
  * @file LC53_Max_Subarray.cpp
  * @author Daniel Kaijzer
- * @brief 
- * @version 0.5
+ * @brief O(n) solution to find and return max subarray sum from an array of ints
+ * @version 1
  * @date 2023-09-10
  * 
  * @copyright Copyright (c) 2023
@@ -15,23 +15,22 @@
 using namespace std;
 
 int maxSubArray(vector<int>& nums) {
-    int max_sum = nums[nums.size()-1], current_sum = 0;
+    int maxSubArray(vector<int>& nums) {
+        int max_sum = INT_MIN, current_sum = 0;
 
-    for (int i = 0; i < nums.size(); i++){
-        current_sum += nums[i];
+        for (int i = 0; i < nums.size(); i++){
+            current_sum += nums[i];
 
-        if (current_sum > max_sum){
-            max_sum = current_sum;
+            if (current_sum > max_sum){
+                max_sum = current_sum;
+            }
+            if (current_sum < 0){
+                current_sum = 0;
+            }
         }
-        else if (current_sum < 0){
-            current_sum = 0;
-        }
-        if (nums[i] > max_sum){
-            max_sum = nums[i];
-        }
+
+        return max_sum;
     }
-
-    return max_sum;
 }
 
 
