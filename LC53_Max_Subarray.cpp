@@ -2,7 +2,7 @@
  * @file LC53_Max_Subarray.cpp
  * @author Daniel Kaijzer
  * @brief 
- * @version 0.3
+ * @version 0.5
  * @date 2023-09-10
  * 
  * @copyright Copyright (c) 2023
@@ -15,8 +15,7 @@
 using namespace std;
 
 int maxSubArray(vector<int>& nums) {
-    int max_sum = INT_MIN;
-    int current_sum = 0;
+    int max_sum = nums[nums.size()-1], current_sum = 0;
 
     for (int i = 0; i < nums.size(); i++){
         current_sum += nums[i];
@@ -26,6 +25,9 @@ int maxSubArray(vector<int>& nums) {
         }
         else if (current_sum < 0){
             current_sum = 0;
+        }
+        if (nums[i] > max_sum){
+            max_sum = nums[i];
         }
     }
 
