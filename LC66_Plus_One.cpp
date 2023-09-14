@@ -2,7 +2,7 @@
  * @file LC66_Plus_One.cpp
  * @author Daniel Kaijzer
  * @brief 
- * @version 0.1
+ * @version 0.2
  * @date 2023-09-12
  * 
  * @copyright Copyright (c) 2023
@@ -15,6 +15,10 @@
 using namespace std;
 
 vector<int> plusOne(vector<int>& digits) {
+    // convert vector of digits into an int value
+
+    // convert int value back into vector of digits
+
     return {};
 }
 
