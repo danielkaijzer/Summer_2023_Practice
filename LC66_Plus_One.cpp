@@ -37,9 +37,12 @@ vector<int> plusOne(vector<int>& digits) {
     int output_vector_size = digits.size(); // temp
 
     for (int i = 0; i < output_vector_size; ++i){
-        double cur_power = output_vector_size-i-1;
+        double cur_power = output_vector_size+i-1; // adjust
 
-        int cur = floor(val / (int)pow(10.0, cur_power));
+        // cout << cur_power << endl;
+
+        // adjust below
+        double cur = val % (int)pow(10.0, cur_power); // 1,2,0
 
         cout << cur << endl;
 
