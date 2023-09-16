@@ -4,8 +4,8 @@
  * @brief convert array of digits into an int value,
  * incremement value by one
  * convert result int back into array of digits
- * @version 0.5
- * @date 2023-09-13
+ * @version 0.6
+ * @date 2023-09-16
  * 
  * @copyright Copyright (c) 2023
  * 
@@ -18,28 +18,27 @@
 using namespace std;
 
 vector<int> plusOne(vector<int>& digits) {
-    int val = 0;
+    short int i = digits.size()-1;
 
-    // convert vector of digits into an int value
-    for (int i = 0; i < digits.size(); ++i){
-        double cur_power = digits.size()-i-1;
-        val += digits.at(i) * (int)pow(10.0, cur_power);
+    if (i>=0){ // if digits has a size
+        while (i != -1){ // iterate through digits backwards from end
+            digits[i] += 1;
+
+            if (i == 0 && digits[i] == 10){ // if 
+                digits[i] = 0;
+                digits.insert(digits.begin(),1); // add leading 1
+            }
+            else if (digits[i] ==10){
+                digits[i] = 0;
+                // in this scenario, you will continue the loop
+                // and go to next value and add 1 
+            }
+            else break; // if after adding 1, digit != 10, break
+            i--;
+        }
     }
 
-    // increment int value by 1
-    val += 1;
-
-    vector<int> output;
-
-    // convert output to string
-    std::string output_string = std::to_string(val);
-
-    for (char c : output_string){
-        // convert char to int and add to vector
-        output.push_back(c-'0');
-    }
-
-    return output;
+    return digits;
 }
 
 
