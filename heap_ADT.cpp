@@ -15,11 +15,30 @@
 
 using namespace std;
 
-class Heap{
+class maxHeap{
     private:
         vector<int> data;
-        
+
     public:
+        maxHeap(){
+
+        }
+
+        maxHeap(int root){
+            cout << data.size() << endl;
+            data.resize(data.size() + 2);
+            data.at(1) = root;
+            cout << root << endl;
+        }
+
+        void insert(int val){
+            data.resize(data.size() + 1);
+            
+            if (val <= data.front()){
+                
+            }
+
+        }
 
 };
 
@@ -27,5 +46,5 @@ class Heap{
 
 
 int main(){
-
+    maxHeap test = maxHeap(5);
 }

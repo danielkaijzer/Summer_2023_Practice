@@ -18,7 +18,7 @@ int maxSubArray(vector<int>& nums) {
     int maxSubArray(vector<int>& nums) {
         int max_sum = INT_MIN, current_sum = 0;
 
-        for (int i = 0; i < nums.size(); i++){
+        for (int i = 0; i < nums.size(); ++i){
             current_sum += nums[i];
 
             if (current_sum > max_sum){

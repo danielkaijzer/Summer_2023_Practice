@@ -22,20 +22,17 @@
 
 std::vector<int> twoSum(std::vector<int>& nums, int target) {
 
-    std::unordered_map<int,int> nums_map;
+    std::unordered_map<int,int> hmp;
 
     // iterate through nums
-    // store index and value in map if value isn't greater than target
     for (int i = 0; i < nums.size(); ++i){
             int complement = target - nums[i];
 
             // if complement exists in map, 
-            // return the index of complement and current value
-            if (nums_map.find(complement) != nums_map.end()){
-                return {nums_map[complement],i}; // returns solution if it exists
+            if (hmp.count(complement) > 1){
+                return {hmp[complement],i}; // returns solution
             }
-
-            nums_map.insert(std::make_pair(nums.at(i), i)); // add new values to map
+            hmp.insert(std::make_pair(nums.at(i), i)); // add new values to map
     }
     return {}; // if solution doesn't exist, returns empty
 }
